@@ -53,3 +53,23 @@ export async function deleteDocument(roomId: string) {
   return { success: false };
  }
 }
+
+export async function inviteUserToDocument(roomId: string, email: string) {
+ auth().protect() // Ensure the user is authenticated
+
+ console.log("Inviting user with email: ", roomId, email)
+
+ try {
+  await adminDb.collection("users").doc(email).collection("rooms").doc(roomId).set({
+   userId: email,
+   role: "editor",
+   createdAt: new Date(),
+   roomId,
+  });
+
+  return { success: true };
+ } catch (error) {
+  console.error("Error inviting user: ", error);
+  return { success: false }
+ }
+}
