@@ -36,7 +36,7 @@ yarn-error.log*
 next-env.d.ts
 
 # Backend
-/backend
+/backend/tight-art-f6d9
 
 # Service Key
 /service_key.json
